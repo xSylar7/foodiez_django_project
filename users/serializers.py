@@ -4,11 +4,30 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['first_name'] = user.first_name
+        token['last_name'] = user.last_name
+        token['username'] = user.username
+        # ...
+
+        return token
+
+
+
+
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    access = serializers.CharField(allow_blank=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ["username", "password", "first_name", "last_name"]
+        fields = ["username", "password", "first_name", "last_name",'access']
 
     def create(self, validated_data):
         username = validated_data["username"]
@@ -18,7 +37,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
         new_user = User(username=username, first_name=first_name,last_name=last_name)
         new_user.set_password(password)
         new_user.save()
-        return new_user
+        validated_data['access'] = MyTokenObtainPairSerializer.get_token(new_user)
+        return validated_data
 
 
 
@@ -38,28 +58,8 @@ class UserLoginSerializer(serializers.Serializer):
         if not user.check_password(my_password):
             raise serializers.ValidationError("Incorrect username/password combination!")
 
-        payload = RefreshToken.for_user(user)
+        payload = MyTokenObtainPairSerializer.get_token(user)
         token = str(payload.access_token)
 
         data["access"] = token
         return data
-
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['first_name'] = user.first_name
-        token['last_name'] = user.last_name
-        token['username'] = user.username
-        # ...
-
-        return token
-
-
-
-
-
-        
