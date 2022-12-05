@@ -1,10 +1,17 @@
 from rest_framework import serializers
 from backend.models import Category, Recipe, Ingredient
 
+
 class CategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model= Category
         fields=['id','name', 'image']
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Recipe
+        fields=['name','category','user','ingredient', 'image']
+
 
 class CategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:

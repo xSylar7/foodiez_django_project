@@ -10,6 +10,13 @@ class CategoryListView(ListAPIView):
     serializer_class = CategoryListSerializer
     permission_classes=[AllowAny]
 
+class CategoryDetailedView(RetrieveAPIView):
+    queryset=Recipe.objects.all()
+    serializer_class= RecipeDetailSerializer
+    lookup_field= 'category'
+    lookup_url_kwarg='recipe_id'
+    permission_classes=[AllowAny]
+
 class RecipeListView(ListAPIView):
     queryset = Recipe.objects.filter()
     serializer_class = RecipeListSerializer
