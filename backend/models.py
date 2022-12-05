@@ -18,11 +18,11 @@ class Recipe (models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name= 'recipies')
     ingredients=models.ManyToManyField('Ingredient', related_name= 'recipies')
     def __str__(self):
-        return f"{self.user.username}: {self.name}"
+        return f"{self.name} ({self.category})"
 
 class Ingredient (models.Model):
     name = models.CharField(max_length=60)
     category = models.ManyToManyField(Category, related_name= 'ingrdients')
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     def __str__(self):
-        return f"{self.name}: {self.category}"
+        return f"{self.name}"
