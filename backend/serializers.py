@@ -22,7 +22,7 @@ class CategoryCreateSerializer(serializers.ModelSerializer):
 class RecipeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
-        fields = ['id','name', 'user', 'image']
+        fields = ['id','name', 'user', 'image', 'category']
 
 # class RecipeDetailSerializer(serializers.ModelSerializer):
 #     class Meta:
