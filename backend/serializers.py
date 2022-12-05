@@ -9,7 +9,7 @@ class CategoryListSerializer(serializers.ModelSerializer):
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model= Recipe
+        model= Category 
         fields=['name','category','user','ingredient', 'image']
 
 
