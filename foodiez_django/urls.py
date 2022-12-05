@@ -16,10 +16,10 @@ urlpatterns = [
     path('categories/', backend_views.CategoryListView.as_view()),
     path('recipies/', backend_views.RecipeListView.as_view()), 
     
-    path('recipes/add/', backend_views.RecipeCreateAPIview.as_view(), name='create-recipe'),
+    
 ]
 
-
+#path('recipes/add/', backend_views.RecipeCreateAPIview.as_view(), name='create-recipe'),
 
 
 

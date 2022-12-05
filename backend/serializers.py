@@ -24,17 +24,17 @@ class RecipeListSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['id','name', 'user', 'image']
 
-class RecipeDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Recipe
-        fields=['name','category','user','ingredient', 'image']
+# class RecipeDetailSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model= Recipe
+#         fields=['name','category','user','ingredient', 'image']
 
-class RecipeCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Recipe
-        fields=['name', 'user', 'category', 'ingredient']
+# class RecipeCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model= Recipe
+#         fields=['name', 'user', 'category', 'ingredient']
 
-class CategoryCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= Ingredient
-        fields=['name','category']
+# class CategoryCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model= Ingredient
+#         fields=['name','category']
