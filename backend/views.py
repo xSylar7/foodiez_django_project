@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView,RetrieveAPIView, RetrieveUpdateAPIView, CreateAPIView, DestroyAPIView
 
-from backend.serializers import CategoryListSerializer, RecipeCreateSerializer, RecipeDetailSerializer, RecipeListSerializer
+from backend.serializers import CategoryListSerializer, RecipeListSerializer
 from .models import Ingredient, Recipe, Category
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 # Create your views here.
