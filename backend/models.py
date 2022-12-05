@@ -21,9 +21,8 @@ class Recipe (models.Model):
         return f"{self.user.username}: {self.name}"
 
 class Ingredient (models.Model):
-    name:models.CharField(max_length=60)
-    category:models.ManyToManyField(Category, related_name= 'ingrdients')
-    user:models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'ingredients')
-    recipe:models.ManyToManyField(Recipe, related_name= 'ingredients')
+    name = models.CharField(max_length=60)
+    category = models.ManyToManyField(Category, related_name= 'ingrdients')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
     def __str__(self):
         return f"{self.name}: {self.category}"
