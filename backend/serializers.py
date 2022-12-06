@@ -7,6 +7,11 @@ class CategoryListSerializer(serializers.ModelSerializer):
         model= Category
         fields=['id','name', 'image']
 
+class CategoryCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+         model= Category
+         fields=['name','image',]
+
 # class CategoryDetailSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model= Category 
@@ -28,6 +33,12 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model= Recipe
         fields=['name','category','user','ingredients', 'image']
+
+
+class RecipeCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Recipe
+        fields=['name', 'category', 'ingredients', 'description', 'image' ]
 
 # class RecipeCreateSerializer(serializers.ModelSerializer):
 #     class Meta:

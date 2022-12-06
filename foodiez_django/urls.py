@@ -11,11 +11,15 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     path('register/', UserCreateAPIView.as_view(), name='register'),
     path('login/', MyTokenObtainPairView.as_view(), name='login'),
+
     path('categories/', backend_views.CategoryListView.as_view(), name = "categories"),
+
     path('recipes/', backend_views.RecipeListView.as_view(), name= "recipes"), 
-    path('recipes/<int:recipe_id>/', backend_views.RecipeDetailedView.as_view()), 
+    path('recipes/<int:recipe_id>/', backend_views.RecipeDetailedView.as_view()),
+    path('recipes/add/', backend_views.RecipeCreateAPIview.as_view(), name='create-recipe'), 
     
     
 ]
