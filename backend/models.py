@@ -4,21 +4,11 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="media/")
+    image = models.ImageField()
 
     def __str__(self):
         return self.name
 
-
-
-class Recipe (models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'recipies')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name= 'recipies')
-    ingredients=models.ManyToManyField('Ingredient', related_name= 'recipies')
-    def __str__(self):
-        return f"{self.name} ({self.category})"
 
 class Ingredient (models.Model):
     name = models.CharField(max_length=60)
@@ -26,3 +16,14 @@ class Ingredient (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     def __str__(self):
         return f"{self.name}"
+
+class Recipe (models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'recipies')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name= 'recipies')
+    ingredients=models.ManyToManyField(Ingredient, related_name= 'recipies')
+    description=models.TextField()
+    def __str__(self):
+        return f"{self.name} ({self.category})"
+
