@@ -10,19 +10,19 @@ class Category(models.Model):
         return self.name
 
 
-
-class Recipe (models.Model):
-    name = models.CharField(max_length=100)
-    image = models.ImageField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'recipies')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name= 'recipies')
-    ingredients=models.ManyToManyField('Ingredient', related_name= 'recipies')
-    def __str__(self):
-        return f"{self.name} ({self.category})"
-
 class Ingredient (models.Model):
     name = models.CharField(max_length=60)
     category = models.ManyToManyField(Category, related_name= 'ingrdients')
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     def __str__(self):
         return f"{self.name}"
+        
+class Recipe (models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'recipies')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name= 'recipies')
+    ingredients=models.ManyToManyField(Ingredient, related_name= 'recipies')
+    def __str__(self):
+        return f"{self.name} ({self.category})"
+
