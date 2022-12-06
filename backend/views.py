@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView,RetrieveAPIView, RetrieveUpdateAPIView, CreateAPIView, DestroyAPIView
 
-from backend.serializers import CategoryListSerializer, RecipeListSerializer
+from backend.serializers import CategoryListSerializer, RecipeDetailSerializer, RecipeListSerializer
 from .models import Ingredient, Recipe, Category
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 # Create your views here.
@@ -23,12 +23,12 @@ class RecipeListView(ListAPIView):
     permission_classes=[AllowAny]
 
 
-# class RecipeDetailedView(RetrieveAPIView):
-#     queryset=Recipe.objects.all()
-#     serializer_class= RecipeDetailSerializer
-#     lookup_field= 'id'
-#     lookup_url_kwarg='recipe_id'
-#     permission_classes=[AllowAny]
+class RecipeDetailedView(RetrieveAPIView):
+    queryset=Recipe.objects.all()
+    serializer_class= RecipeDetailSerializer
+    lookup_field= 'id'
+    lookup_url_kwarg='recipe_id'
+    permission_classes=[AllowAny]
 
 
 # class RecipeUpdateView(RetrieveUpdateAPIView):

@@ -24,10 +24,10 @@ class RecipeListSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['id','name', 'user', 'image', 'category']
 
-# class RecipeDetailSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model= Recipe
-#         fields=['name','category','user','ingredient', 'image']
+class RecipeDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Recipe
+        fields=['name','category','user','ingredients', 'image']
 
 # class RecipeCreateSerializer(serializers.ModelSerializer):
 #     class Meta:
