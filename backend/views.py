@@ -10,7 +10,7 @@ class CategoryListView(ListAPIView):
     serializer_class = CategoryListSerializer
     permission_classes=[AllowAny]
 
-    class CategoryCreateAPIview(CreateAPIView):
+class CategoryCreateAPIview(CreateAPIView):
         serializer_class= CategoryCreateSerializer
         permission_classes=[IsAuthenticated]
             
